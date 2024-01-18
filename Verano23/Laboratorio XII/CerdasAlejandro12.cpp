@@ -37,7 +37,15 @@ void solve(){
     int cue = cantC[menor], msk = (1 << e)-1;
     for(int i = 1; i <= c; i++){
         if(i == menor) continue;
-        for(int j = 0, n = 0; j < e && n < cantC[i]; j++){
+        for(int j = 0, n = cantC[i]; j < e && n; j++){
+            if(n == e-j){
+                for(int k = j; k < e; k++){
+                    msk = clear(msk,j);
+                    solu[k] = i;
+                    cue++;
+                }
+                break;
+            } 
             if(test(msk,j)){
                 solu[j] = i;
                 imprimir(solu);
@@ -51,12 +59,13 @@ void solve(){
                 }
                 if(r > cue){
                     msk = clear(msk,j);
-                    n++;
+                    n--;
                     cue++;
                 }
-            }    
+            }   
         }
     }
+    if(r!=e) imprimir(solu);
 }
 
 int main(){
