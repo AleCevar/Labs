@@ -77,12 +77,5 @@ void respuesta(long long int pri, long long int seg){
 int main(){
     cin >> pruebas;
     cout << esprimo(pruebas) << endl;
-    /*
-    generar_array();
-    cin >> pruebas;
-    for(int i = 0; i < pruebas; i++){
-        cin >> pri >> seg;
-        respuesta(pri,seg);
-    }*/
     return 0;
 }
