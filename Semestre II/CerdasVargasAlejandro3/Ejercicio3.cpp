@@ -1,3 +1,8 @@
+/*
+Se desea imprimir una serie de strings en una imprenta móvil en la menor cantidad de pasos posible. 
+En la imprenta se puede quitar una letra, agregar una letra e imprimir. 
+*/
+
 #include <bits/stdc++.h>
 #include "Ejercicio3.h"
 using namespace std;
