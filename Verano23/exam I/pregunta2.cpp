@@ -1,3 +1,9 @@
+/*
+Para una carrera atlética se necesitan n medallas, pero el fabricante sólo vende paquetes de {a1, a2, a3 . . . ak} medallas.
+Cada paquete con un costo {p1, p2, p3 . . . pk}, siendo A el conjunto de los paquetes de medallas y siendo P el conjunto de 
+los precios (ordenados respectivamente), ¿Cuál sería el mínimo precio que se puede pagar por conjuntos 
+de medallas que sean mayores o iguales que n?
+*/
 #include <bits/stdc++.h>
 using namespace std;
 
