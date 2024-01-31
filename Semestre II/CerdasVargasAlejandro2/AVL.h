@@ -1,3 +1,7 @@
+/*
+AVL modificado para funcionar como un conjunto de strings, usa hash
+*/
+
 #include <bits/stdc++.h>
 #include "lista.cpp"
 using namespace std;
