@@ -1,3 +1,8 @@
+/*
+Dada una serie de personas que pertenecen o no a fraternidades, se debe indicar cuantas fraternidades hay y cuantas personas están solas.
+Algunas personas ofrecen información de algunos de sus compañeros.
+*/
+
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long int
