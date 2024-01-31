@@ -1,3 +1,8 @@
+/*
+Dada una serie de estrellas con sus valores de lux, se desea determinar el mínimo o el máximo de la estrella-i  a la estrella-j. 
+Además se pueden hacer modificaciones en estrellas.
+*/
+
 #include <bits/stdc++.h>
 using namespace std;
 
