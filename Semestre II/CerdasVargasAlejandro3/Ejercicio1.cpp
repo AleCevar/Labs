@@ -1,3 +1,8 @@
+/*
+Dada una serie de strings con que representan abreviaciones de algunas profesiones, se debe determinar cuantas profesiones 
+diferentes hay en una  entrada.
+*/
+
 #include <bits/stdc++.h>
 #include "Ejercicio1.h"
 using namespace std;
