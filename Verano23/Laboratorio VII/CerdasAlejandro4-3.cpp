@@ -1,3 +1,5 @@
+//Un número hermoso es un número con 2N dígitos,
+//y cuyos primeros N dígitos suman lo mismo que sus dígitos faltantes. Imprima la cantidad de números hermosos en un intervalo.
 #include <bits/stdc++.h>
 using namespace std;
 
