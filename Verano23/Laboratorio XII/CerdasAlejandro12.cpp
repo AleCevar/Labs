@@ -1,3 +1,4 @@
+//Programa que juega mastermind
 //Complejidad: $O(colores \times espacios)$
 
 #include <bits/stdc++.h>
