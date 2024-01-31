@@ -1,3 +1,8 @@
+/*
+Programe la funci´on subsequenceSum que recibe un vector V (lista o arreglo) y un valor P, V está compuesto
+únicamente por números enteros positivos. La función debe retornar F alse si no existe alguna subsecuencia de números consecutivos
+en V que sume exactamente P. La complejidad debe ser O(n + log(n)) siendo n el tamaño de V.
+*/
 #include <bits/stdc++.h>
 using namespace std;
 
