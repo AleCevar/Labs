@@ -1,3 +1,7 @@
+/*
+Link debe perseguir a Bolokin por el reino de Hyrule, pero bolokin solo se mueve a cuidades con un centaleón.
+Determine la cantidad de centaleones que debe derrotar Link hasta llegar a Bolokin.
+*/
 #include <bits/stdc++.h>
 using namespace std;
 typedef vector<int> vi;
