@@ -1,3 +1,10 @@
+/*
+Cierto vendedor de productos navideños, que los vende en combos quiere determinar cuánto dinero obtendría si se vendiera cada producto,
+en diferentes cantidades, según los combos. El vendedor tiene una cantidad de productos por combo preparado, sólo los vende en esos
+combos específicos. Luego, se desea sumar todas las combinaciones cuyo valor supera cierto umbral G. Dicho de otra manera, el vendedor 
+quiere que se sumen las ganancias que resultan de multiplicar el precio de cada producto por
+cada combo vendido según sus especificaciones, pero sólo para los resultados que sean mayores o iguales a un valor G determinado.
+*/
 #include <bits/stdc++.h>
 using namespace std;
 
