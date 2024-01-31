@@ -1,3 +1,7 @@
+/*
+Clase de un conjunto de strings
+*/
+
 #include <iostream>
 #include "AVL.cpp"
 using namespace std;
