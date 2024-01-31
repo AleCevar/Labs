@@ -1,5 +1,5 @@
 //Kener Castillo y Alejandro Cerdas
-//Main
+//Solución al clásico problema de TSP, mediante dinámica, genética y backtracking. Todos corriendo de forma paralela.
 
 #include <bits/stdc++.h>
 #include "castillocerdasvargasBT.cpp"
