@@ -1,3 +1,7 @@
+/*
+Dada una serie de edificios con personas dentro, se puede eliminar personas o agregar personas en los edificios. 
+Se desea saber la cantidad de personas en un edificio-i a un edificio-j.
+*/
 #include <bits/stdc++.h>
 using namespace std;
 
