@@ -1,3 +1,9 @@
+/*
+Se cuenta con el directorio telefónico de la multinacional completa, pero se mezclaron los números de teléfono de país, edificios, 
+extensiones a oficinas, etc. Se quiere saber cuántas oficinas hay en total. Su tarea consiste en indicar, dados todos los números 
+de teléfono, cuántos de ellos ya tienen un prefijo (código de país, código de área) común a otros.
+*/
+
 #include <bits/stdc++.h>
 #include "Ejercicio2.h"
 using namespace std;
