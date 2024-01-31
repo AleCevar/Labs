@@ -1,3 +1,7 @@
+/*
+Clase de lista enlazada simple
+*/
+
 #include<iostream>
 using namespace std;
 
