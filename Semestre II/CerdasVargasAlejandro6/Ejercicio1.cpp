@@ -1,3 +1,5 @@
+//En un parqueo en Japón, se tiene 7 vehículos, con cierto peso, 
+//y se desea ordenar estos vehículos de una forma conveniente, pero se desea minimizar el costo de realizar estos movimientos.
 #include <bits/stdc++.h>
 using namespace std;
 
