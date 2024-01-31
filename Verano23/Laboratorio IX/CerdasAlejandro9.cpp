@@ -1,3 +1,4 @@
+// n-reinas genetico
 //Complejidad: $O(n^2 \times generacion)$
 
 #include <bits/stdc++.h>
