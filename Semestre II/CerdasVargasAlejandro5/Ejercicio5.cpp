@@ -1,3 +1,7 @@
+//Dada una red de computadores, donde cada una tiene ciertas conexiones, 
+//se debe determinar el mínimo número de computadoras que se deben recorrer para enviar un mensaje
+//entre las dos computadoras más alejadas.
+
 #include <bits/stdc++.h>
 using namespace std;
 typedef vector<int> vi;
