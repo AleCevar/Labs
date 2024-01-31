@@ -1,3 +1,7 @@
+/*
+Se desea saber cuÃ¡l es el nÃºmero pentagonal mÃ¡s cercano de un nÃºmero.
+*/
+
 #include <iostream>
 using namespace std;
 
@@ -6,20 +10,20 @@ long long int repes;
 long long int entrada;
 
 long long int penta( long long int num){
-    // Calcula los números pentagonales.
+    // Calcula los nÃºmeros pentagonales.
     return (num * (3 * num - 1)) / 2;
 }
 
 void generar_lista(){
-    // Genera una lista que contiene números pentagonales.
+    // Genera una lista que contiene nÃºmeros pentagonales.
     for(int i = 1; i <= 816496; i++){
         pentagonal[i-1] = penta(i);
     }
 }
 
 long long int buscar(){
-    // Busca los dos números pentagonales más cerca de la entrada, y se queda con el que tiene menor distancia.
-    long long int mayor = 816495;// número que da aproximadamente 10 elevado a la 12 con la fórmula pentagonal.
+    // Busca los dos nÃºmeros pentagonales mÃ¡s cerca de la entrada, y se queda con el que tiene menor distancia.
+    long long int mayor = 816495;// nÃºmero que da aproximadamente 10 elevado a la 12 con la fÃ³rmula pentagonal.
     long long int menor = 0;
     long long int medio = (mayor + menor) / 2;
 
