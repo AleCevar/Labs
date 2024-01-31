@@ -1,3 +1,4 @@
+//Dado tres string : s1,s2,s3, se debe cumplir que s1+s2=s3. Se debe buscar los valores que cumplan con esto.
 //$O(\frac{10!}{(10-n)!})$ siendo n la cantidad de letras diferentes
 
 #include <bits/stdc++.h>
