@@ -1,3 +1,6 @@
+// En el metro de Nueva York existen varias paradas ubicadas en distintos puntos,
+//se desea conocer el mínimo tiempo para llegar de una parada-i a una parada-j.
+
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long int lli;
