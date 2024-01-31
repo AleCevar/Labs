@@ -1,3 +1,5 @@
+//Dada una figura se debe indicar cuantos lados tiene.
+
 #include <bits/stdc++.h>
 using namespace std;
 typedef pair<int,int> pi;
