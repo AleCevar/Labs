@@ -1,3 +1,4 @@
+//Problema clásico New House, pero con rectángulos.
 #include <bits/stdc++.h>
 using namespace std;
 
