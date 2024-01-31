@@ -1,3 +1,5 @@
+// Le es dado un arreglo binario de tamaño n y un valor K. Usted debe asegurarse que ningún subarreglo de tamaño igual o 
+//mayor que K tenga un promedio de 1.  Se puede voltear posiciones del arreglo. El objetivo es calcular la mímica cantidad de pasos.
 //Complejidad: $O(n)$
 
 #include <bits/stdc++.h>
