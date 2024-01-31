@@ -1,14 +1,17 @@
-
+/*
+En una matriz A de tamaño n × m se colocan números naturales de forma que a_ij es el j−esimo múltiplo de i
+Dos estudiantes universitarios de la carrera de ingeniería compiten para poder indicar cuál es la suma de todos los números de la matriz
+*/
 #include <iostream>
 using namespace std;
 
 long long int casos;
 long long int fila;
 long long int columna;
-long long int modulo = 100000007;
+long long int modulo = 1000000007;
 
 long long int pot(int a, int exp, int mod){
-    // Funci�n que calcula el inverso de un n�mero.
+    // Funcion que calcula el inverso de un nomero.
     if (!exp) return 1L;
     long long r = pot(a, exp/2, mod);
     r *= r;
@@ -18,7 +21,7 @@ long long int pot(int a, int exp, int mod){
 }
 
 void gauss(long long int fila, long long int columna, long long inverso){
-    // Funci�n que calcula la multiplicaci�n de la matriz, usando Gauss.
+    // Funcion que calcula la multiplicacion de la matriz, usando Gauss.
     fila = (fila * (fila+1)) % modulo ;
     columna = (columna * (columna+1)) % modulo ;
     long long int res =((fila * columna) % modulo) * inverso;
