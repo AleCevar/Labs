@@ -1,3 +1,7 @@
+/*
+Clase de circular doubly link list
+*/
+
 class nodo_cdll{
     public:
         int dato;
