@@ -1,3 +1,8 @@
+/*
+Tomas desea ganar un concurso de perros que arrean ovejas. El objetivo es entregar a Tomas, los 3 nombres de los perros(en orden
+alfab√©tico) que m√°s arrean ovejas y el total de ovejas que pueden arrear.
+*/
+
 #include <iostream>
 #include <stdio.h>
 using namespace std;
@@ -56,7 +61,7 @@ void colocar_nombre(int i){
 }
 
 void insertionsort(int size){
-    // ordena por n˙mero de ovejas que arrea.
+    // ordena por n√∫mero de ovejas que arrea.
     for (int i = 0; i < size; i++){
         int actual = m_oveja[i];
         generar_actual(i);
@@ -82,7 +87,7 @@ void calcular_total(){
 }
 
 int ordenar(int i, int j, int size){
-    // ordena alfabÈticamente los nombres.
+    // ordena alfab√©ticamente los nombres.
     if(i+1 >= size){
         return 1;
     }
@@ -111,7 +116,7 @@ int main(){
             size --;
         }
     }
-    // se ordena alfabÈticamente.
+    // se ordena alfab√©ticamente.
     int stop = 0;
     while(stop < 2){
         stop += ordenar(0,0,size);    
