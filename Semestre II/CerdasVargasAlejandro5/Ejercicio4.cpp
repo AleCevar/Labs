@@ -1,3 +1,5 @@
+//Dada una red de computadores, donde cada una tiene ciertas conexiones, 
+//se debe determinar el número de computadoras que se deben recorrer hasta llegar a cada computadora.
 #include <bits/stdc++.h>
 using namespace std;
 typedef vector<int> vi;
