@@ -1,3 +1,4 @@
+//Saber si un número es primo.
 #include <iostream>
 using namespace std;
 
