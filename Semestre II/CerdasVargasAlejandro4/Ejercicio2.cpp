@@ -1,3 +1,7 @@
+/*
+Dada una serie de personas y un número de prioridad, se desea vacunar a los de mayor prioridad en un centro de médico.
+*/
+
 #include <bits/stdc++.h>
 #include <functional>
 using namespace std;
