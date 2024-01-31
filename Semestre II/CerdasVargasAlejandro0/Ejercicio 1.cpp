@@ -1,3 +1,7 @@
+/*
+Un profesor universitario considera está teniendo problemas para conciliar el sueño. Desea saber si las notas que ha puesto 
+su universidad siguen alguna distribución de probabilidad. Las notas en su trabajo se colocan de la A a la F.
+*/
 #include <iostream>
 using namespace std;
 
@@ -8,7 +12,7 @@ int array[6]={0,0,0,0,0,0};
 int total[6]={0,0,0,0,0,0};
 
 void identificar(char nota){
-    // Incrementa la posici�n del array donde es la nota, se resta entre 'A' debido a que en ASCII da el n�mero de la posici�n.
+    // Incrementa la posición del array donde es la nota, se resta entre 'A' debido a que en ASCII da el número de la posición.
     array[nota-'A']++;
 }
 
