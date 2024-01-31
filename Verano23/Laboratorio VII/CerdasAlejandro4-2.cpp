@@ -1,3 +1,5 @@
+//Dado un string con ciertas letras cambiadas y un alfabeto,
+//se debe imprimir todas las posibilidades del string con letras que no esten en el alfabeto. 
 //$O(\frac{n!}{(n-p)!})$ donde n = 26-alfa.size() y p = cantidad de letras diferentes a cambiar
 
 #include <bits/stdc++.h>
