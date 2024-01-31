@@ -1,3 +1,4 @@
+#UNSTABLE UNICORNS simplificado
 import random
 import sys
 sys.setrecursionlimit(10000)
