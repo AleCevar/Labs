@@ -1,3 +1,4 @@
+#Battle ship con movimiento aleatorio de los barcos y disparos especiales
 import random
 import sys
 sys.setrecursionlimit(10000)
