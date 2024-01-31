@@ -1,3 +1,6 @@
+/*
+Un gu铆a quiere saber cuantas aves diferentes puede observar dada una matriz de 1 y 0; y una serie de puntos desde donde buscara aves.
+*/
 #include <iostream>
 using namespace std;
 
@@ -10,7 +13,7 @@ using namespace std;
     long long int cuenta;
 
 void revisar(int i, int j){
-    /* Funci髇 que verifica si los valores son posibles dentro de la matriz y de serlo, verifica si en la posici髇 hay un uno. En este caso lo cuentan
+    /* Funci贸n que verifica si los valores son posibles dentro de la matriz y de serlo, verifica si en la posici贸n hay un uno. En este caso lo cuentan
     y lo eliminan.
     */
     if (i >= 0 && i < filas){
@@ -25,7 +28,7 @@ void revisar(int i, int j){
 }
 
 void generar_coord(){ 
-    // Funci髇 que verfica todas las posibilidades de las coordenadas entrantes.
+    // Funci贸n que verfica todas las posibilidades de las coordenadas entrantes.
     for (int i = 0; i < vista; i++){
         cin >> x >> y;
         x --; y--;
@@ -42,7 +45,7 @@ void generar_coord(){
 }
 
 int main(){
-    // Funci髇 principal.
+    // Funci贸n principal.
     cin >> filas >> columnas >> vista;
     int matriz[filas][columnas];
     for (int i=0; i < filas; i++){
