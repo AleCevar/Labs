@@ -1,3 +1,7 @@
+//Harry Potter desea enviar mensajes a todas las ciudades en el mundo mágico. Cuando deja un mensaje en una ciudad,
+//este se duplica y se envía por sí mismo a otra ciudad. Para que esto último sea posible se  requiere savia de mandrágora, 
+//por lo tanto, se desea minimizar el costo de los envíos entre ciudades. Se desea determinar el menor costo posible.
+
 #include <bits/stdc++.h>
 using namespace std;
 
