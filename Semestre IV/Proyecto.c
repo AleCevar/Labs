@@ -63,7 +63,7 @@ void cambiarDireccion(int n){
 void driveToOE(unsigned short id, int a){
     int vel = rando(izqOE, derOE);
     pthread_mutex_lock(&bridge[0]);
-    printf("El carro %hu entra a la casilla %d hacia el Este \n", id, 0);
+    //printf("El carro %hu entra a la casilla %d hacia el Este \n", id, 0);
     pthread_mutex_unlock(&entradaOEController);
     bridgeState[0] = a;
     usleep(vel);
@@ -71,7 +71,7 @@ void driveToOE(unsigned short id, int a){
     for(; pos < bridgeSize;  pos++){
         pthread_mutex_lock(&bridge[pos]);
         bridgeState[pos] = a;
-        printf("El carro %hu entra a la casilla %d hacia el Este \n", id, pos);
+        //printf("El carro %hu entra a la casilla %d hacia el Este \n", id, pos);
         pthread_mutex_unlock(&bridge[pos - 1]);
         bridgeState[pos - 1] = 0;
         usleep(vel);
@@ -83,7 +83,7 @@ void driveToOE(unsigned short id, int a){
 void driveToEO(unsigned short id, int a){
     int vel = rando(izqEO, derEO);
     pthread_mutex_lock(&bridge[bridgeSize-1]);
-    printf("El carro %hu entra a la casilla %d hacia el Oeste\n", id, bridgeSize-1);
+    //printf("El carro %hu entra a la casilla %d hacia el Oeste\n", id, bridgeSize-1);
     pthread_mutex_unlock(&entradaEOController);
     bridgeState[bridgeSize-1] = a;
     usleep(vel);
@@ -91,7 +91,7 @@ void driveToEO(unsigned short id, int a){
     for(; pos >= 0;  pos--){
         pthread_mutex_lock(&bridge[pos]);
         bridgeState[pos] = a; 
-        printf("El carro %hu entra a la casilla %d hacia el Oeste\n", id, pos);
+        //printf("El carro %hu entra a la casilla %d hacia el Oeste\n", id, pos);
         pthread_mutex_unlock(&bridge[pos + 1]);
         bridgeState[pos + 1] = 0;
         usleep(vel);
@@ -158,14 +158,14 @@ void * passOECarnage(void * arg){
     pthread_mutex_lock(&entradaOEController);
     pthread_mutex_lock(&esperaOEController);
     ambulanceOE = 0;
-    printf("Soy un carro %hu chu chu hacia el ESTE\n",id);
+    //printf("Soy un carro %hu chu chu hacia el ESTE\n",id);
     while(entryDirection == 1 || carrosEO || ambulanceEO) pthread_cond_wait(&condEsperaOE,&esperaOEController);
     inBridge++;
     carrosOE++;
     pthread_mutex_unlock(&esperaOEController);
     driveToOE(id,1);
     leaveBridgeCarnage(0); 
-    printf("El carro %hu salio del puente hacia el Este\n", id);
+    //printf("El carro %hu salio del puente hacia el Este\n", id);
 }
 
 void * passAmbulanceOECarnage(void * arg){
@@ -174,14 +174,14 @@ void * passAmbulanceOECarnage(void * arg){
     pthread_mutex_lock(&entradaOEController);
     pthread_mutex_lock(&esperaOEController);
     ambulanceOE = 1;
-    printf("Soy una ambulancia %hu chu chu hacia el ESTE\n",id);
+    //printf("Soy una ambulancia %hu chu chu hacia el ESTE\n",id);
     while((entryDirection == 1 && ambulanceEO) || carrosEO) pthread_cond_wait(&condEsperaOE,&esperaOEController);
     inBridge++;
     carrosOE++;
     pthread_mutex_unlock(&esperaOEController);
     driveToOE(id,2);
     leaveBridgeCarnage(0);
-    printf("La ambulancia %hu salio del puente hacia el Este\n", id);
+    //printf("La ambulancia %hu salio del puente hacia el Este\n", id);
 }
 
 void * passEOCarnage(void * arg){
@@ -190,14 +190,14 @@ void * passEOCarnage(void * arg){
     pthread_mutex_lock(&entradaEOController);
     pthread_mutex_lock(&esperaEOController);
     ambulanceEO = 0;
-    printf("Soy un carro %hu chu chu hacia el OESTE\n",id);
+    //printf("Soy un carro %hu chu chu hacia el OESTE\n",id);
     while(entryDirection == 0 || carrosOE || ambulanceOE) pthread_cond_wait(&condEsperaEO,&esperaEOController);
     inBridge++;
     carrosEO++;
     pthread_mutex_unlock(&esperaEOController);
     driveToEO(id,-1);
     leaveBridgeCarnage(1);
-    printf("El carro %hu salio del puente hacia el Oeste\n", id);
+    //printf("El carro %hu salio del puente hacia el Oeste\n", id);
 }
 
 void * passAmbulanceEOCarnage(void * arg){
@@ -206,14 +206,14 @@ void * passAmbulanceEOCarnage(void * arg){
     pthread_mutex_lock(&entradaEOController);
     pthread_mutex_lock(&esperaEOController);
     ambulanceEO = 1;
-    printf("Soy una ambulancia %d chu chu hacia el OESTE\n",id);
+    //printf("Soy una ambulancia %d chu chu hacia el OESTE\n",id);
     while((entryDirection == 0 && ambulanceOE) || carrosOE) pthread_cond_wait(&condEsperaEO,&esperaEOController);
     inBridge++;
     carrosEO++;
     pthread_mutex_unlock(&esperaEOController);
     driveToEO(id,-2);
     leaveBridgeCarnage(1);
-    printf("La ambulancia %hu salio del puente hacia el Oeste\n", id);
+    //printf("La ambulancia %hu salio del puente hacia el Oeste\n", id);
 }
 
 void * passOESemaphore(void * arg){
@@ -221,14 +221,14 @@ void * passOESemaphore(void * arg){
     pthread_mutex_lock(&entradaOEController);
     pthread_mutex_lock(&esperaOEController);
     ambulanceOE = 0;
-    printf("Soy un carro %hu chu chu hacia el ESTE\n",id);
+    //printf("Soy un carro %hu chu chu hacia el ESTE\n",id);
     while(ambulanceEO || carrosEO || entryDirection != 0) pthread_cond_wait(&condEsperaOE,&esperaOEController);
     inBridge++;
     carrosOE++;
     pthread_mutex_unlock(&esperaOEController);
     driveToOE(id,1);
     leaveBridgeSemaphore(0); 
-    printf("El carro %hu salio del puente hacia el Este\n", id);
+    //printf("El carro %hu salio del puente hacia el Este\n", id);
 }
 
 void * passEOSemaphore(void * arg){
@@ -236,14 +236,14 @@ void * passEOSemaphore(void * arg){
     pthread_mutex_lock(&entradaEOController);
     pthread_mutex_lock(&esperaEOController);
     ambulanceEO = 0;
-    printf("Soy un carro %hu chu chu hacia el OESTE\n",id);
+    //printf("Soy un carro %hu chu chu hacia el OESTE\n",id);
     while(ambulanceOE || entryDirection != 1 || carrosOE) pthread_cond_wait(&condEsperaEO,&esperaEOController);
     inBridge++;
     carrosEO++;
     pthread_mutex_unlock(&esperaEOController);
     driveToEO(id,-1);
     leaveBridgeSemaphore(1);
-    printf("El carro %hu salio del puente hacia el Oeste\n", id);
+    //printf("El carro %hu salio del puente hacia el Oeste\n", id);
 }
 
 void * passAmbulanceOESemaphore(void * arg){
@@ -251,14 +251,14 @@ void * passAmbulanceOESemaphore(void * arg){
     pthread_mutex_lock(&entradaOEController);
     pthread_mutex_lock(&esperaOEController);
     ambulanceOE = 1;
-    printf("Soy una ambulancia %hu chu chu hacia el ESTE\n",id);
+    //printf("Soy una ambulancia %hu chu chu hacia el ESTE\n",id);
     while((entryDirection == 1 && ambulanceEO) || carrosEO) pthread_cond_wait(&condEsperaOE,&esperaOEController);
     inBridge++;
     carrosOE++;
     pthread_mutex_unlock(&esperaOEController);
     driveToOE(id,2);
     leaveBridgeSemaphore(0);
-    printf("La ambulancia %hu salio del puente hacia el Este\n", id);
+    //printf("La ambulancia %hu salio del puente hacia el Este\n", id);
 }
 
 void * passAmbulanceEOSemaphore(void * arg){
@@ -266,26 +266,26 @@ void * passAmbulanceEOSemaphore(void * arg){
     pthread_mutex_lock(&entradaEOController);
     pthread_mutex_lock(&esperaEOController);
     ambulanceEO = 1;
-    printf("Soy una ambulancia %d chu chu hacia el OESTE\n",id);
+    //printf("Soy una ambulancia %d chu chu hacia el OESTE\n",id);
     while((entryDirection == 0 && ambulanceOE) || carrosOE) pthread_cond_wait(&condEsperaEO,&esperaEOController);
     inBridge++;
     carrosEO++;
     pthread_mutex_unlock(&esperaEOController);
     driveToEO(id,-2);
     leaveBridgeSemaphore(1);
-    printf("La ambulancia %hu salio del puente hacia el Oeste\n", id);
+    //printf("La ambulancia %hu salio del puente hacia el Oeste\n", id);
 }
 
 void * semaphoreOE(){
     while(1){
         pthread_mutex_lock(&semaphoreOfficerController);
         while(entryDirection) pthread_cond_wait(&condSemaphore,&semaphoreOfficerController);
-        printf("Turno hacia el ESTE\n");
+        //printf("Turno hacia el ESTE\n");
         pthread_mutex_unlock(&semaphoreOfficerController);
         pthread_cond_signal(&condEsperaOE);
         usleep(timeSleepSemaphoreOE);
         entryDirection = 1;
-        printf("AQUI NO PASA NADIE\n");
+        //printf("AQUI NO PASA NADIE\n");
         pthread_cond_signal(&condSemaphore);
     }
 }
@@ -294,12 +294,12 @@ void * semaphoreEO(){
     while(1){
         pthread_mutex_lock(&semaphoreOfficerController);
         while(!entryDirection) pthread_cond_wait(&condSemaphore,&semaphoreOfficerController);
-        printf("Turno hacia el OESTE\n");
+        //printf("Turno hacia el OESTE\n");
         pthread_mutex_unlock(&semaphoreOfficerController);
         pthread_cond_signal(&condEsperaEO);
         usleep(timeSleepSemaphoreEO);
         entryDirection = 0;
-        printf("AQUI NO PASA NADIE\n");
+        //printf("AQUI NO PASA NADIE\n");
         pthread_cond_signal(&condSemaphore);
     }
 }
@@ -309,7 +309,7 @@ void * passOETraffic(void * arg){
     pthread_mutex_lock(&entradaOEController);
     pthread_mutex_lock(&esperaOEController);
     ambulanceOE = 0;
-    printf("Soy un carro %hu chu chu hacia el ESTE\n",id);
+    //printf("Soy un carro %hu chu chu hacia el ESTE\n",id);
     while(entryDirection == 1 || carrosEO || ambulanceEO || nOE < 1) pthread_cond_wait(&condEsperaOE,&esperaOEController);
     inBridge++;
     carrosOE++;
@@ -317,7 +317,7 @@ void * passOETraffic(void * arg){
     pthread_mutex_unlock(&esperaOEController);
     driveToOE(id,1);
     leaveBridgeTraffic(0); 
-    printf("El carro %hu salio del puente hacia el Este\n", id);
+    //printf("El carro %hu salio del puente hacia el Este\n", id);
 }
 
 void * passEOTraffic(void * arg){
@@ -325,7 +325,7 @@ void * passEOTraffic(void * arg){
     pthread_mutex_lock(&entradaEOController);
     pthread_mutex_lock(&esperaEOController);
     ambulanceEO = 0;
-    printf("Soy un carro %hu chu chu hacia el OESTE\n",id);
+    //printf("Soy un carro %hu chu chu hacia el OESTE\n",id);
     while(entryDirection == 0 || carrosOE || ambulanceOE || nEO < 1) pthread_cond_wait(&condEsperaEO,&esperaEOController);
     inBridge++;
     carrosEO++;
@@ -333,7 +333,7 @@ void * passEOTraffic(void * arg){
     pthread_mutex_unlock(&esperaEOController);
     driveToEO(id,-1);
     leaveBridgeTraffic(1);
-    printf("El carro %hu salio del puente hacia el Oeste\n", id);
+    //printf("El carro %hu salio del puente hacia el Oeste\n", id);
 }
 
 void * passAmbulanceOETraffic(void * arg){
@@ -341,7 +341,7 @@ void * passAmbulanceOETraffic(void * arg){
     pthread_mutex_lock(&entradaOEController);
     pthread_mutex_lock(&esperaOEController);
     ambulanceOE = 1;
-    printf("Soy una ambulancia %hu chu chu hacia el ESTE\n",id);
+    //printf("Soy una ambulancia %hu chu chu hacia el ESTE\n",id);
     while((entryDirection == 1 && ambulanceEO) || carrosEO) pthread_cond_wait(&condEsperaOE,&esperaOEController);
     inBridge++;
     carrosOE++;
@@ -349,7 +349,7 @@ void * passAmbulanceOETraffic(void * arg){
     pthread_mutex_unlock(&esperaOEController);
     driveToOE(id,2);
     leaveBridgeTraffic(0);
-    printf("La ambulancia %hu salio del puente hacia el Este\n", id);
+    //printf("La ambulancia %hu salio del puente hacia el Este\n", id);
 }
 
 void * passAmbulanceEOTraffic(void * arg){
@@ -357,7 +357,7 @@ void * passAmbulanceEOTraffic(void * arg){
     pthread_mutex_lock(&entradaEOController);
     pthread_mutex_lock(&esperaEOController);
     ambulanceEO = 1;
-    printf("Soy una ambulancia %d chu chu hacia el OESTE\n",id);
+    //printf("Soy una ambulancia %d chu chu hacia el OESTE\n",id);
     while((entryDirection == 0 && ambulanceOE) || carrosOE) pthread_cond_wait(&condEsperaEO,&esperaEOController);
     inBridge++;
     carrosEO++;
@@ -365,7 +365,7 @@ void * passAmbulanceEOTraffic(void * arg){
     pthread_mutex_unlock(&esperaEOController);
     driveToEO(id,-2);
     leaveBridgeTraffic(1);
-    printf("La ambulancia %hu salio del puente hacia el Oeste\n", id);
+    //printf("La ambulancia %hu salio del puente hacia el Oeste\n", id);
 }
 
 void * trafficOfficerOE(){
@@ -374,7 +374,7 @@ void * trafficOfficerOE(){
         while(officerFlag) pthread_cond_wait(&condOfficerOE,&semaphoreOfficerController);
         nOE = kOE;
         entryDirection = 0;
-        printf("Van %d a al ESTE\n", kOE);
+        //printf("Van %d a al ESTE\n", kOE);
         pthread_cond_signal(&condEsperaOE);
         pthread_cond_wait(&condOfficerOE,&semaphoreOfficerController);
         officerFlag++;
@@ -388,7 +388,7 @@ void * trafficOfficerEO(){
         pthread_mutex_lock(&semaphoreOfficerController);
         while(!officerFlag) pthread_cond_wait(&condOfficerEO,&semaphoreOfficerController);
         entryDirection = 1;
-        printf("Van %d a al OESTE\n", kEO);
+        //printf("Van %d a al OESTE\n", kEO);
         nEO = kEO;
         pthread_cond_signal(&condEsperaEO);
         pthread_cond_wait(&condOfficerEO,&semaphoreOfficerController);
@@ -466,21 +466,20 @@ int initializeVariables(){
         numeros[i] = parsear(buffer);
         i++;
     }
-    int bridgeSize = numeros[0];
-    int izqOE = numeros[1];
-    int derOE = numeros[2];
-    int izqEO = numeros[3];
-    int derEO = numeros[4];
-    int ambulanceProbOE = numeros[5];
-    int ambulanceProbEO = numeros[6];
-    int mediaEO = numeros[7];
-    int mediaOE = numeros[8];
-    int timeSleepSemaphoreOE = numeros[9];
-    int timeSleepSemaphoreEO = numeros[10];
-    int kOE = numeros[11];
-    int kEO = numeros[12];
     fclose(file);
-
+    bridgeSize = numeros[0];
+    izqOE = numeros[1];
+    derOE = numeros[2];
+    izqEO = numeros[3];
+    derEO = numeros[4];
+    ambulanceProbOE = numeros[5];
+    ambulanceProbEO = numeros[6];
+    mediaEO = numeros[7];
+    mediaOE = numeros[8];
+    timeSleepSemaphoreOE = numeros[9];
+    timeSleepSemaphoreEO = numeros[10];
+    kOE = numeros[11];
+    kEO = numeros[12];
 }
 
 // ------------------------------------inicializadores
@@ -498,22 +497,30 @@ int main(){
     printf("Favor seleccione un modo:\n 1.Carnage\n 2.Semáforos\n 3.Oficial de transito\n> ");
     scanf("%d",&modo);
     
-    // if(modo == 2) initializeSemaphore();
-    // if(modo == 3) initializeTraffic();
-    // pthread_t threadGeneratorOE;
-    // pthread_t threadGeneratorEO;
-    // pthread_create(&threadGeneratorOE, NULL, &generadorOE, &modo);
-    // pthread_detach(threadGeneratorOE);
-    // pthread_create(&threadGeneratorEO, NULL, &generadorEO, &modo);
-    // pthread_detach(threadGeneratorEO);
-    // while(1){
-    //     usleep(150000);
-    //     system("clear");
-    //     if(!entryDirection) printf("🟢                                        🔴\n");
-    //     else printf("🔴                                        🟢\n");
-    //     if(ambulanceOE) printf("🚑 ➡️ ||");
-    //     else printf("🚘 ➡️ ||");
-    //     for(int i = 0; i < bridgeSize; i++)
-    // }
+    if(modo == 2) initializeSemaphore();
+    if(modo == 3) initializeTraffic();
+    pthread_t threadGeneratorOE;
+    pthread_t threadGeneratorEO;
+    pthread_create(&threadGeneratorOE, NULL, &generadorOE, &modo);
+    pthread_detach(threadGeneratorOE);
+    pthread_create(&threadGeneratorEO, NULL, &generadorEO, &modo);
+    pthread_detach(threadGeneratorEO);
+    while(1){
+        usleep(150000);
+        system("clear");
+        if(!entryDirection) printf("      🟢                                         🔴\n");
+        else printf("      🔴                                         🟢\n");
+        if(ambulanceOE) printf("      🚑➡️ ||");
+        else printf("      🚖➡️ ||");
+        for(int i = 0; i < bridgeSize; i++){
+            if(bridgeState[i] == 1) printf("| 🚖➡️ |");
+            if(bridgeState[i] == 2) printf("| 🚑➡️ |");
+            if(bridgeState[i] == -1) printf("| ⬅️🚘 |");
+            if(bridgeState[i] == -2) printf("| ⬅️🚑 |");
+            if(bridgeState[i] == 0)printf("|   |");
+        }
+        if(ambulanceEO) printf("|| ⬅️🚑\n");
+        else printf("|| ⬅️🚘\n");
+    }
     return 0;
 }
