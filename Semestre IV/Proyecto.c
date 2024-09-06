@@ -7,24 +7,23 @@
 typedef long long ll;
 
 int bridgeSize;
-int izqOE;
-int derOE;
-int izqEO;
-int derEO;
+ll izqOE;
+ll derOE;
+ll izqEO;
+ll derEO;
 int ambulanceProbOE;
 int ambulanceProbEO;
-int mediaEO;
-int mediaOE;
-int timeSleepSemaphoreOE;
-int timeSleepSemaphoreEO;
+ll mediaEO;
+ll mediaOE;
+ll timeSleepSemaphoreOE;
+ll timeSleepSemaphoreEO;
 int kOE;
 int kEO;
 
 int * bridgeState;
 pthread_mutex_t * bridge;
-int timeSleepGeneratorsOE;
-int timeSleepGeneratorsEO;
-unsigned short ids[10000];
+ll timeSleepGeneratorsOE;
+ll timeSleepGeneratorsEO;
 int inBridge = 0;
 int carrosOE = 0;
 int carrosEO = 0;
@@ -52,7 +51,7 @@ int flagEO = 0;
 
 // ----------------------------------- variables
 
-int rando(int min, int max){return (int) (min + rand() % (max-min+1));}
+ll rando(ll min, ll max){return (ll) (min + rand() % (max-min+1));}
 
 double exponencialDistribution(double media){
     double r = (double) drand48();
@@ -66,7 +65,7 @@ void cambiarDireccion(int n){
 }
 
 void driveToOE(unsigned short id, int a){
-    int vel = rando(izqOE, derOE);
+    ll vel = rando(izqOE, derOE);
     pthread_mutex_lock(&bridge[0]);
     //printf("El carro %hu entra a la casilla %d hacia el Este \n", id, 0);
     flagOE --;
@@ -88,7 +87,7 @@ void driveToOE(unsigned short id, int a){
 }
 
 void driveToEO(unsigned short id, int a){
-    int vel = rando(izqEO, derEO);
+    ll vel = rando(izqEO, derEO);
     pthread_mutex_lock(&bridge[bridgeSize-1]);
     //printf("El carro %hu entra a la casilla %d hacia el Oeste\n", id, bridgeSize-1);
     flagEO --;
@@ -109,9 +108,10 @@ void driveToEO(unsigned short id, int a){
     bridgeState[pos + 1] = 0;        
 }
 
-int parsear(char * a){
+ll parsear(char * a){
     if(a[0] == '\n')return 0;
-    int i, res = 0;
+    int i; 
+    ll res = 0;
     for(i = 0; a[i] != ':'; i++);
     i++;
     for(;a[i] != '\n';i++){
@@ -431,9 +431,9 @@ void * generadorOE(void * arg){
     while(1){
         usleep(timeSleepGeneratorsOE);        
         pthread_t h;
-        int r = rando(0,99);
-        if(r < ambulanceProbOE) pthread_create(&h, NULL, ambulancia, &ids[seq]);
-        else pthread_create(&h, NULL, carro, &ids[seq]);
+        ll r = rando(0,99);
+        if(r < ambulanceProbOE) pthread_create(&h, NULL, ambulancia, &seq);
+        else pthread_create(&h, NULL, carro, &seq);
         pthread_detach(h);
         seq++;
     }
@@ -447,9 +447,9 @@ void * generadorEO(void * arg){
     while(1){
         usleep(timeSleepGeneratorsEO);
         pthread_t h;
-        int r = rando(0,99);
-        if(r < ambulanceProbEO) pthread_create(&h,NULL,ambulancia,&ids[seq]);
-        else pthread_create(&h,NULL,carro,&ids[seq]);
+        ll r = rando(0,99);
+        if(r < ambulanceProbEO) pthread_create(&h,NULL,ambulancia,&seq);
+        else pthread_create(&h,NULL,carro,&seq);
         pthread_detach(h);
         seq++;
     }
@@ -480,7 +480,7 @@ void initializeTraffic(){
 int initializeVariables(){
     FILE * file;
     char buffer[100];
-    int numeros[14];
+    ll numeros[14];
     int i = 0;
     file = fopen("Entrada.txt","r");
     if (file == NULL) {
@@ -505,6 +505,7 @@ int initializeVariables(){
     timeSleepSemaphoreEO = numeros[10];
     kOE = numeros[11];
     kEO = numeros[12];
+    
 }
 
 // ------------------------------------inicializadores
@@ -515,10 +516,9 @@ int main(){
     bridge = (pthread_mutex_t*) malloc (bridgeSize * sizeof(pthread_mutex_t));
     bridgeState = (int*) malloc (bridgeSize * sizeof(int));
     for(int i = 0; i < bridgeSize; i++) pthread_mutex_init(&bridge[i],NULL);
-    timeSleepGeneratorsOE = (int) exponencialDistribution(mediaOE);
-    timeSleepGeneratorsEO = (int) exponencialDistribution(mediaEO);
-    for(short i = 0; i < 10000; i++) ids[i] = i+1;
-
+    timeSleepGeneratorsOE = (ll) exponencialDistribution(mediaOE);
+    timeSleepGeneratorsEO = (ll) exponencialDistribution(mediaEO);
+    
     printf("Favor seleccione un modo:\n 1.Carnage\n 2.Semáforos\n 3.Oficial de transito\n> ");
     scanf("%d",&modo);
     
