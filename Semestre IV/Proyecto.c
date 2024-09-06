@@ -41,8 +41,8 @@ int entryDirection = 2;
 int officerFlag;
 pthread_cond_t condOfficerEO = PTHREAD_COND_INITIALIZER;
 pthread_cond_t condOfficerOE = PTHREAD_COND_INITIALIZER;
-int nEO;
-int nOE;
+int nEO = 0;
+int nOE = 0;
 int modo;
 pthread_mutex_t esperaEOController = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t esperaOEController = PTHREAD_MUTEX_INITIALIZER;
@@ -362,7 +362,7 @@ void * passAmbulanceOETraffic(void * arg){
     pthread_mutex_lock(&esperaOEController);
     ambulanceOE = 1;
     //printf("Soy una ambulancia %hu chu chu hacia el ESTE\n",id);
-    while((entryDirection == 1 && ambulanceEO) || carrosEO) pthread_cond_wait(&condEsperaOE,&esperaOEController);
+    while((entryDirection == 1 && ambulanceEO) || carrosEO || entryDirection == 2) pthread_cond_wait(&condEsperaOE,&esperaOEController);
     inBridge++;
     carrosOE++;
     nOE--;
@@ -379,7 +379,7 @@ void * passAmbulanceEOTraffic(void * arg){
     pthread_mutex_lock(&esperaEOController);
     ambulanceEO = 1;
     //printf("Soy una ambulancia %d chu chu hacia el OESTE\n",id);
-    while((entryDirection == 0 && ambulanceOE) || carrosOE) pthread_cond_wait(&condEsperaEO,&esperaEOController);
+    while((entryDirection == 0 && ambulanceOE) || carrosOE || entryDirection == 2) pthread_cond_wait(&condEsperaEO,&esperaEOController);
     inBridge++;
     carrosEO++;
     nEO--;
@@ -411,9 +411,9 @@ void * trafficOfficerEO(){
         pthread_mutex_lock(&semaphoreOfficerController);
         while(!officerFlag) pthread_cond_wait(&condOfficerEO,&semaphoreOfficerController);
         if(flagEO){
+            nEO = kEO;
             entryDirection = 1;
             //printf("Van %d a al OESTE\n", kEO);
-            nEO = kEO;
             pthread_cond_signal(&condEsperaEO);
             pthread_cond_wait(&condOfficerEO,&semaphoreOfficerController);
         }
@@ -505,7 +505,6 @@ int initializeVariables(){
     timeSleepSemaphoreEO = numeros[10];
     kOE = numeros[11];
     kEO = numeros[12];
-
 }
 
 // ------------------------------------inicializadores
@@ -534,9 +533,7 @@ int main(){
     while(1){
         usleep(150000);
         fflush(stdout);
-        if (system("clear") != 0) {
-            printf("Error al ejecutar el comando 'clear'.\n");
-        }
+        //system("clear");
         if(!entryDirection) printf("🟢");
         else printf("🔴");
         if(ambulanceOE) printf("🚑➡️ ||");
