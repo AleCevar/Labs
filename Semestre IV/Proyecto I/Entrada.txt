@@ -1,0 +1,13 @@
+Tamaño del puente:25
+Velocidad mínima del oeste al este:300000
+Velocidad máxima del oeste al este:300000
+Velocidad mínima del este al oeste:200000
+Velocidad máxima del este al oeste:200000
+Probabilidad de ambulancia del oeste al este:99
+Probabilidad de ambulancia del este al oeste:99
+Media del oeste al este:1200000
+Media del este al oeste:1000000
+Tiempo del semáforo de oeste al este:3000000
+Tiempo del semáforo de este al oeste:5000000
+Cantidad de carros del oeste al este:7
+Cantidad de carros del este al oeste:3
